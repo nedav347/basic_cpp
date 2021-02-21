@@ -3,7 +3,7 @@
 * курса "Основы языка С++"
 * автор Недокунев А.В.
 * среда разработки Notepad++ /компилятор MinGW/
-* codepage OEM866
+* codepage OEM866.
 */
 #include <iostream>
 
