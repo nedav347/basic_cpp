@@ -21,10 +21,11 @@ int main()
 	float type_float = 2147483647.0; //4 байта
 	double type_double = 9223372036854775807.0; //8 байт
 	
-//Заодно и Задание 2 выполним
+//объявляем тип данных enum, заодно и Задание 2 выполним
 	enum SYMBOL{PLAYER_1_WIN = 'X', PLAYER_2_WIN = 'O', SPACE = ' ', PLAYER_1 = 'x', PLAYER_2 = 'o',  HORIZ = '-', VERT = '|', CROSS = '+'};//объявляем тип данных enum	
-	enum SYMBOL p1 = PLAYER_1;//объявляем переменную и сразу инициализируем (true или 1)
-	enum SYMBOL p2 = PLAYER_1;
+//хотя enum вообще-то int, для удобочитаемости пишем символы, а не их коды ASCII
+	enum SYMBOL p1 = PLAYER_1;//объявляем переменную и сразу инициализируем
+	enum SYMBOL p2 = PLAYER_2;
 	enum SYMBOL s = SPACE;
 	enum SYMBOL p1w = PLAYER_1_WIN;
 	enum SYMBOL p2w = PLAYER_2_WIN;
@@ -32,22 +33,31 @@ int main()
 	enum SYMBOL v = VERT;
 	enum SYMBOL x = CROSS;
 	
-	
-	struct type_struct {//объявляем тип данных struct,
-		int i;
-		char c;
+//объявляем тип данных struct, заодно и Задание 4* выполним
+	static const int size_x = 3, size_y = 3;
+	struct sGame_field {
+		const int in_line = 3;//количество полей для выигрыша
+		struct sCell {//структура для клетки поля
+			int x_coord, y_coord;//координаты клетки поля
+			int mode;//состояние клетки поля, где 0 - пусто, 1 - занято игроком 1, 2 - занято игроком 2
+		} cell_arr[size_x][size_y];
+	} MyField;
+	for (int a = 0; a < size_x; a++) {//инициализируем игровое поле 
+		for (int b = 0; b < size_y; b++) {
+			MyField.cell_arr[a][b].x_coord = a;
+			MyField.cell_arr[a][b].y_coord = b;
+			MyField.cell_arr[a][b].x_coord = 0;
+		};
 	};
-	struct type_struct T_1;//объявляем переменную
-	T_1.i = 1;//инициализируем
-	T_1.c = 'a';
-	
+			
+//объявляем тип данных union
 	union type_union {
 		int i;
 		char c;
 		float f;
 	};
-	union type_union U_1;
-	U_1.f = 2147483647.0;
+	union type_union U_1;//объявляем переменную
+	U_1.f = 2147483647.0;//инициализируем
 
 //Задание 3
 	char field[5][5];//создаем массив
@@ -62,14 +72,25 @@ int main()
 			} else if (k % 2 != 0) {
 				field[k][m] = h;
 			}
-			printf("%c", field[k][m]);
+			printf("%c", field[k][m]);//просто, чтобы проверить себя
 		}
-		printf("\n");
+		printf("\n");//наверное, можно было добавить перевод строки в каждый последний элемент строки (тогда размерность станет [5][6] 
 	}
-
-
-
 	
+//Задание 5*
+	struct s_byte {//объявляем тип данных struct,
+		union type_union {//объявляем тип данных union
+			int i;
+			char c;
+			float f;
+		};
+		int is_int : 1;
+		int is_char : 1;
+		int is_float : 1;
+	};
+	
+	
+/*
 	printf("sizeof int %d, %d\n", sizeof(int), type_int);
 	printf("sizeof uint %d, %u\n", sizeof(unsigned int), type_uint);
 	printf("sizeof short %d, %hd\n", sizeof(short), type_short);
@@ -79,7 +100,6 @@ int main()
 	printf("sizeof char %d, %c\n", sizeof(char), type_char);
 	printf("sizeof float %d, %f\n", sizeof(float), type_float);
 	printf("sizeof double %d, %f\n", sizeof(double), type_double);
-
-//	std::cout << "Hello world!" << std::endl;
+*/
 	return 0;
 }
