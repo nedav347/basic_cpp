@@ -11,8 +11,7 @@ extern int ae, be, ce, de;//goto lesson3_ext.cpp
 
 int variable_inint();
 
-int main()
-{
+int main(){
 /*Задание 1
 Написать программу, вычисляющую выражение a * (b + (c / d)) и 
 выводящую результат с плавающей точкой, где a, b, c, d – целочисленные константы

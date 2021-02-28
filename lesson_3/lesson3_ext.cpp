@@ -9,8 +9,7 @@
 
 int ae, be, ce,de;
 
-int variable_inint()
-{
+int variable_inint(){
 	ae = 10;
 	be = 20;
 	ce = 30;
