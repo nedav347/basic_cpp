@@ -1,0 +1,1 @@
+Write a function that "glue" these files, pre-buffering their contents into a dynamically allocated memory segment of the required size.
