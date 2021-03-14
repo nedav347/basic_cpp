@@ -1,0 +1,1 @@
+Write a program that will create two text files, about 50-100 characters each (does not really matter). 
